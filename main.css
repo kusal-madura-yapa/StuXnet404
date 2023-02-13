@@ -1,0 +1,16 @@
+/* Edit in Video pain */
+#video {
+    display: grid;
+    grid-template-columns : 1fr 1fr;
+    gap: 2em;
+
+}
+
+
+/* video palayer */
+
+.video-player {
+background-color: #000;
+width: 100%;
+height: 500px;
+}
