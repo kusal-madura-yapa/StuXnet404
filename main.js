@@ -54,7 +54,7 @@ let createOffer = async () => {
             remoteStream.addTrack(track); 
         });
 
-
+    }
 
 
     // add the local stream to the peer connection
