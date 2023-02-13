@@ -7,3 +7,5 @@ and please switch to your repo otherwise it will be a damage for other persons w
 
 after clone the file u need to give the git checkout -b salman_Dev like that
 after u can edit it ur branch
+
+if you have a dout just do it ur pc and stay we can a get a meeting and solve it
