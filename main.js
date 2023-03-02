@@ -1,8 +1,16 @@
-//  get the accsess for mic and cam 
-
-// this will be the local stream get the cam and mic on ur computer 
+// app ID
+let APP_ID = '39facf61f9764699be6fe4787dd77b26';
+// token for the channel
+let token = null ;
+// channel UID for each user in the channel
+let uid = String (Math.floor(Math.random() * 10000));
+// clent 
+let client ;
+// channel
+let channel;
+// this will be the local stream get the cam and mic on ur computer   your
 let localStream = null;
-// this will be the remote stream get the cam and mic on remote users computer
+// this will be the remote stream get the cam and mic on remote users computer Userse
 let remoteStream = null;
 // this will be the peer connection
 let peerConnection = null;
@@ -20,6 +28,14 @@ const servers = {
 // this function will be called when the page is loaded
 let init = async () => {
 
+    client = await AgoraRTM.createInstance(APP_ID)
+    await client.login({uid,token})
+
+    channel = client.createChannel('main')
+    await channel.join()
+
+    channel.on('MemberJoined', handleuserJoined)
+
     localStream= await navigator.mediaDevices.getUserMedia({video:true,audio:false}); // requesrt the mic and cam
     // onece u had accsess to 
     document.getElementById("user-1").srcObject = localStream; // set the local video to the local stream
@@ -29,26 +45,30 @@ let init = async () => {
 
 }
 
+// this function will be called when the user join the channel
+let handleuserJoined = async (MemberId) => {
+    console.log('new user joined',MemberId);
+}
+
+
 let createOffer = async () => {
     // create the offer
-    peerConnection = new RTCPeerConnection();
+    peerConnection = new RTCPeerConnection(servers);
 
     // add the remote stream to the peer connection
-    remoteStream=new MediaStream();
+    remoteStream =  new MediaStream();
         // onece u had accsess to 
     document.getElementById("user-2").srcObject = remoteStream; // set the local video to the local stream
 
 
 
-    // local track add to the peer connection loop over the local stream tracks
 
+    // local track add to the peer connection loop over the local stream tracks
     localStream.getTracks().forEach((track )=> {
         peerConnection.addTrack(track,localStream);
-    });
-
+    })
 
     // remote track add to the remote stream loop over the remote stream tracks
-
     peerConnection.ontrack = (event) => {
         event.streams[0].getTracks().forEach((track) => {
             remoteStream.addTrack(track); 
@@ -56,12 +76,18 @@ let createOffer = async () => {
 
     }
 
+    //request the ice candidate by stun server
+    peerConnection.onicecandidate = async (event) => {
+        if(event.candidate){
+            console.log('the new ICE candidate:',event.candidate);
+        }
+    }
 
-    // add the local stream to the peer connection
+    // create a offer 
     let offer = await peerConnection.createOffer();
     await peerConnection.setLocalDescription(offer);
-
     console.log('offer:',offer);
+
 }
 
 
