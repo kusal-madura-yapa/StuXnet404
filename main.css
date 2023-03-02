@@ -14,3 +14,36 @@ background-color: #000;
 width: 100%;
 height: 300px;
 }
+ 
+#user-2{
+    display : none;
+}
+
+#controls {
+    display: flex;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    position: fixed;
+    gap: 1em;
+    
+}
+
+.control-container {
+    background-color: rgb(161, 156, 246);
+    padding: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+.control-container img{
+    width: 30px;
+    height: 30px;
+}
+#leave-btn {
+    background-color: rgb(209, 76, 136);
+}
