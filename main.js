@@ -8,6 +8,13 @@ let uid = String (Math.floor(Math.random() * 10000));
 let client ;
 // channel two users connect to the same channel
 let channel;
+
+let queryString = window.location.search;
+let urlParams = new URLSearchParams(queryString);
+let roomId = urlParams.get('room');
+if (!roomId) {
+    window.location.href = 'lobby.html';}
+
 // this will be the local stream get the cam and mic on ur computer   your
 let localStream = null;
 // this will be the remote stream get the cam and mic on remote users computer Userse
@@ -36,6 +43,8 @@ let init = async () => {
     await channel.join()
 
     channel.on('MemberJoined', handleuserJoined)
+    // when user leave the meeting 
+    channel.on('MemberLeft', handleUserLeft)
 
     client.on('MessageFromPeer', handleMessageFromPeer)
 
@@ -45,6 +54,11 @@ let init = async () => {
 
     
 
+}
+
+// this function will be called when the user leave the channel
+let handleUserLeft = (MemberId) => {
+    document.getElementById("user-2").style.display = "none"; // set the local video to the local stream
 }
 
 let handleMessageFromPeer = async (message,MemberId) => {
@@ -81,7 +95,10 @@ let createpeerConnection = async (MemberId) => {
     // add the remote stream to the peer connection
     remoteStream =  new MediaStream();
         // onece u had accsess to 
-    document.getElementById("user-2").srcObject = remoteStream; // set the local video to the local stream
+    
+        document.getElementById("user-2").srcObject = remoteStream; // set the local video to the local stream
+        document.getElementById("user-2").style.display = "block"; // set the local video to the local stream
+
 
 
     if (!localStream) {
@@ -145,6 +162,14 @@ let addAnswer = async (answer) => {
         
     }
 }
+
+let leaveChannel = async () => {
+    await channel.leave();
+    await client.logout();
+}
+
+// if the user leave the meeting call the leave channel function
+ window.addEventListener('beforeunload',leaveChannel);
 
 //  when you open the page it will call the init function
 init();
