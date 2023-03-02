@@ -48,7 +48,21 @@ let init = async () => {
 }
 
 let handleMessageFromPeer = async (message,MemberId) => {
-    console.log ('message from peer',message.text);
+    // get the message from the peer
+    message = JSON.parse(message.text);
+
+    if (message.type == 'offer') {
+        // if the message is offer create the answer
+        createAnswer(MemberId,message.offer);
+    }else if (message.type == 'answer') {
+        // if the message is answer set it to the peer connection
+        addAnswer(message.answer);
+    }else if (message.type == 'candidate') {
+        if (peerConnection) {
+            // if the message is candidate add it to the peer connection
+            peerConnection.addIceCandidate(message.candidate);
+        }
+    }
 }
 
 // this function will be called when the user join the channel
@@ -59,7 +73,8 @@ let handleuserJoined = async (MemberId) => {
 }
 
 
-let createOffer = async (MemberId) => {
+let createpeerConnection = async (MemberId) => {
+
     // create the offer
     peerConnection = new RTCPeerConnection(servers);
 
@@ -69,7 +84,11 @@ let createOffer = async (MemberId) => {
     document.getElementById("user-2").srcObject = remoteStream; // set the local video to the local stream
 
 
-
+    if (!localStream) {
+        localStream= await navigator.mediaDevices.getUserMedia({video:true,audio:false}); // requesrt the mic and cam
+        // onece u had accsess to 
+        document.getElementById("user-1").srcObject = localStream; // set the local video to the local stream
+    }
 
     // local track add to the peer connection loop over the local stream tracks
     localStream.getTracks().forEach((track )=> {
@@ -87,17 +106,45 @@ let createOffer = async (MemberId) => {
     //request the ice candidate by stun server
     peerConnection.onicecandidate = async (event) => {
         if(event.candidate){
-            console.log('the new ICE candidate:',event.candidate);
+            client.sendMessageToPeer({text:JSON.stringify({'type':'candidate','candidate':event.candidate})},MemberId)
+
         }
     }
+}
+
+
+let createOffer = async (MemberId) => {
+
+    await createpeerConnection(MemberId);
 
     // create a offer 
     let offer = await peerConnection.createOffer();
     await peerConnection.setLocalDescription(offer);
-    client.sendMessageToPeer({text:"Heyy"},MemberId)
+    client.sendMessageToPeer({text:JSON.stringify({'type':'offer','offer':offer })},MemberId)
+
+
 
 }
 
+
+// create the answer
+let createAnswer = async (MemberId,offer) => {
+    await createpeerConnection(MemberId);
+    await peerConnection.setRemoteDescription(offer);
+    let answer = await peerConnection.createAnswer();
+    await peerConnection.setLocalDescription(answer);
+
+    client.sendMessageToPeer({text:JSON.stringify({'type':'answer','answer':answer })},MemberId)
+
+}
+
+// set the answer to the peer connection
+let addAnswer = async (answer) => {
+    if (!peerConnection.currentRemoteDescription) {
+        peerConnection.setRemoteDescription(answer);
+        
+    }
+}
 
 //  when you open the page it will call the init function
 init();
