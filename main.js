@@ -6,7 +6,7 @@ let token = null ;
 let uid = String (Math.floor(Math.random() * 10000));
 // clent 
 let client ;
-// channel
+// channel two users connect to the same channel
 let channel;
 // this will be the local stream get the cam and mic on ur computer   your
 let localStream = null;
@@ -29,6 +29,7 @@ const servers = {
 let init = async () => {
 
     client = await AgoraRTM.createInstance(APP_ID)
+    // uid need to be a string 
     await client.login({uid,token})
 
     channel = client.createChannel('main')
@@ -36,22 +37,29 @@ let init = async () => {
 
     channel.on('MemberJoined', handleuserJoined)
 
+    client.on('MessageFromPeer', handleMessageFromPeer)
+
     localStream= await navigator.mediaDevices.getUserMedia({video:true,audio:false}); // requesrt the mic and cam
     // onece u had accsess to 
     document.getElementById("user-1").srcObject = localStream; // set the local video to the local stream
 
-    // create the offer
-    createOffer();
+    
 
+}
+
+let handleMessageFromPeer = async (message,MemberId) => {
+    console.log ('message from peer',message.text);
 }
 
 // this function will be called when the user join the channel
 let handleuserJoined = async (MemberId) => {
     console.log('new user joined',MemberId);
+    // create the offer
+    createOffer(MemberId);
 }
 
 
-let createOffer = async () => {
+let createOffer = async (MemberId) => {
     // create the offer
     peerConnection = new RTCPeerConnection(servers);
 
@@ -86,7 +94,7 @@ let createOffer = async () => {
     // create a offer 
     let offer = await peerConnection.createOffer();
     await peerConnection.setLocalDescription(offer);
-    console.log('offer:',offer);
+    client.sendMessageToPeer({text:"Heyy"},MemberId)
 
 }
 
