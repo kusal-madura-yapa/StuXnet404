@@ -16,7 +16,7 @@ if (!roomId) {
     window.location.href = 'lobby.html';}
 
 // this will be the local stream get the cam and mic on ur computer   your
-let localStream = null;
+let localStream ;
 // this will be the remote stream get the cam and mic on remote users computer Userse
 let remoteStream = null;
 // this will be the peer connection
@@ -48,7 +48,7 @@ let init = async () => {
 
     client.on('MessageFromPeer', handleMessageFromPeer)
 
-    localStream= await navigator.mediaDevices.getUserMedia({video:true,audio:false}); // requesrt the mic and cam
+    localStream= await navigator.mediaDevices.getUserMedia({video:true,audio:true}); // requesrt the mic and cam
     // onece u had accsess to 
     document.getElementById("user-1").srcObject = localStream; // set the local video to the local stream
 
@@ -59,6 +59,7 @@ let init = async () => {
 // this function will be called when the user leave the channel
 let handleUserLeft = (MemberId) => {
     document.getElementById("user-2").style.display = "none"; // set the local video to the local stream
+    document.getElementById("user-1").classList.remove('smallFrame');
 }
 
 let handleMessageFromPeer = async (message,MemberId) => {
@@ -99,6 +100,7 @@ let createpeerConnection = async (MemberId) => {
         document.getElementById("user-2").srcObject = remoteStream; // set the local video to the local stream
         document.getElementById("user-2").style.display = "block"; // set the local video to the local stream
 
+        document.getElementById("user-1").classList.add('smallFrame'); // add the class to the local video
 
 
     if (!localStream) {
@@ -167,9 +169,40 @@ let leaveChannel = async () => {
     await channel.leave();
     await client.logout();
 }
+ 
+let toggelVideo = async () => {
+    let vedioTrack = localStream.getTracks().find (track => track.kind === 'video')
+    if (vedioTrack.enabled ){
+        vedioTrack.enabled = false;
+        document.getElementById("camera-btn").style.background= 'rgb(255,100,111)'; // set the local video to the local stream
+    }
+        else{
+            vedioTrack.enabled = true;
+            document.getElementById("camera-btn").style.background= 'rgb(122,255,225)'; // set the local video to the local stream
+        }
+        
+}
+
+
+let toggelMic = async () => {
+    let audioTrack = localStream.getTracks().find (track => track.kind === 'audio')
+    if (audioTrack.enabled ){
+        audioTrack.enabled = false;
+        document.getElementById("mic-btn").style.background= 'rgb(255,100,111)'; // set the local video to the local stream
+    }
+        else{
+            audioTrack.enabled = true;
+            document.getElementById("mic-btn").style.background= 'rgb(122,255,225)'; // set the local video to the local stream
+        }
+    }
 
 // if the user leave the meeting call the leave channel function
  window.addEventListener('beforeunload',leaveChannel);
+ // ifthe user off the camara call the toggel video function
+document.getElementById("camera-btn").addEventListener('click',toggelVideo);
+// ifthe user off the mic call the toggel mic function
+document.getElementById("mic-btn").addEventListener('click',toggelMic);
+ 
 
 //  when you open the page it will call the init function
 init();

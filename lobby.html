@@ -10,10 +10,21 @@
 <body>
     
 
-    <form id="join-form">
-        <input type="text" name="invite_link" required/>
-        <input type="submit" value="Join Room"/>
-    </form>
+    <main>
+        <div id="form-container">
+            <div id="form-header">
+                <h1>Join a Room</h1>
+                <p> 👋  Enter the invite link below to join a room </p>
+            </div>
+            <div id="form-body">
+                <form id="join-form">
+                    <input type="text" name="invite_link" required/>
+                    <input type="submit" value="Join Room"/>
+                </form>
+            </div>
+    
+    </main>
+
 
     <script>
         let form = document.getElementById("join-form");

@@ -1,8 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 /* Edit in Video pain */
 #videos {
     display: grid;
-    grid-template-columns : 1fr 1fr;
-    gap: 2em;
+    grid-template-columns : 1fr ;
+   height: 100vh;
+   overflow: hidden;
+
 
 }
 
@@ -12,11 +20,25 @@
 .video-player {
 background-color: #000;
 width: 100%;
-height: 300px;
+height: 100%;
+object-fit: cover;
 }
  
 #user-2{
     display : none;
+}
+
+.smallFrame {
+    position: fixed;
+    left: 20px;
+    height: 170px;
+    width: 300px;
+    top: 20px;
+    border-radius: 5px;
+    border: 2px solid #c107e1;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 15px 0px rgba(0,0,0,0.75);
+    z-index: 999;
 }
 
 #controls {
@@ -30,7 +52,7 @@ height: 300px;
 }
 
 .control-container {
-    background-color: rgb(161, 156, 246);
+    background-color: rgb(75, 71, 147);
     padding: 20px;
     border-radius: 50%;
     display: flex;
@@ -45,5 +67,25 @@ height: 300px;
     height: 30px;
 }
 #leave-btn {
-    background-color: rgb(209, 76, 136);
+    background-color: rgb(255,100,111);
+}
+
+@media screen and (max-width: 600px) {
+    #videos {
+        grid-template-columns: 1fr;
+    }
+    .smallFrame {
+        left: 10px;
+        height: 80px;
+        width: 120px;
+        top: 10px;
+    }
+    #controls {
+        bottom: 10px;
+    }
+
+    .control-container {
+        height: 20px;
+        width: 20px;
+    }
 }
