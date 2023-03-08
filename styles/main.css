@@ -23,7 +23,7 @@
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #845695;
+  background: #e9b634;
 }
 
 body {
@@ -78,7 +78,7 @@ a {
   font-weight: 700;
   line-height: 0;
   margin: 0;
-  color: #ebe0e0;
+  color: #ffffff;
 }
 
 @media (max-width: 640px) {
@@ -102,7 +102,7 @@ a {
 }
 
 .nav__link {
-  color: #fff;
+  color: #000000;
   text-decoration: none;
   transition: 1s;
   border-bottom: 2px solid transparent;
@@ -119,12 +119,12 @@ a {
 .nav__link:hover {
   color: rgb(230, 228, 228);
   text-decoration: none;
-  border-color: #845695;
+  border-color: #e9b634;
 }
 
 #create__room__btn {
   display: block;
-  background-color: #845695;
+  background-color: #e9b634;
   padding: 8px 24px;
   font-size: 14px;
   font-weight: 500;
@@ -132,7 +132,7 @@ a {
 }
 
 #create__room__btn:hover {
-  background-color: #845695;
+  background-color: #e9b634;
 }
 
 .nav--list {
@@ -152,7 +152,7 @@ a {
 #members__button:hover svg > path,
 #chat__button:hover svg,
 .nav__link:hover svg {
-  fill: #845695;
+  fill: #e9b634;
 }
 
 .nav__link svg {

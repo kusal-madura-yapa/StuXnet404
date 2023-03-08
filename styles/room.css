@@ -12,8 +12,8 @@
 }
 
 #members__container {
-  background-color: #262625;
-  border-right: 1px solid #797a79;
+  background-color: #323230;
+  border-right: 1px solid #637f63;
   overflow-y: auto;
   width: 90%;
   max-width: 250px;
@@ -75,7 +75,7 @@
 
 #messages__container {
   height: calc(100vh - 85px);
-  background-color: #262625;
+  background-color: #0f0f0f;
   right: 0;
   position: absolute;
   width: 100%;
@@ -128,7 +128,7 @@
 
 .message__author__bot {
   margin-right: 10px;
-  color: #a52aca!important;
+  color: #e9b634!important;
 
 }
 
@@ -207,7 +207,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border:2px solid #b366f9;
+  border:2px solid #e9b634;
   border-radius: 50%;
   cursor: pointer;
   overflow: hidden;
@@ -313,8 +313,8 @@
 .stream__actions a,
 .stream__actions button {
   cursor: pointer;
-  background-color: #262625;
-  color: #fff;
+  background-color: #434343;
+  color: #000000;
   border: none;
   display: flex;
   align-items: center;
@@ -328,22 +328,22 @@
 .stream__actions button svg {
   width: 1.5rem;
   height: 1.5rem;
-  fill: #ede0e0;
+  fill: #000000;
 }
 
 .stream__actions a.active,
 .stream__actions button.active,
 .stream__actions a:hover,
 .stream__actions button:hover {
-  background-color: #845695;
+  background-color: #e9b634;
 }
 
 #join-btn{
-  background-color: #845695;
-  font-size: 18px;
-  padding: 25px 50px;
+  background-color: #e9b634;
+  font-size: 20px;
+  padding: 20px 50px;
   border: none;
-  color:#fff;
+  color:#000000;
 
   position: fixed;
   bottom: 1rem;
