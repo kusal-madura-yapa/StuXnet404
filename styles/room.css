@@ -175,7 +175,6 @@
 }
 
 #stream__box{
-<<<<<<< HEAD
   background-color: #3f434a;
   height: 60vh;
   display: none;
@@ -232,46 +231,11 @@
 
 @media (max-width: 1400px) {
   .video__container{
-=======
-  background-color: #2aca3e;
-  height: 60vh;
-}
-
-#streams_container{
-  display: flex;
-  gap: 2em;
-  flex-wrap:wrap ;
-  justify-self: center;
-  align-items: center;
-  margin-left: 25px;
-  margin-top: 25px;
-  margin-bottom:225px ;
-}
-
-.video_container{
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid #845695;
-  cursor: pointer;
-  border-radius: 50%;
-  overflow: hidden;
-  height: 300px;
-  width: 300px;
-}
-
-@media (max-width: 1400px) {
-  .video_container{
->>>>>>> master
     height: 200px;
     width: 200px;
   }
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> master
 @media (max-width: 1200px) {
   #members__container {
     display: none;
@@ -306,18 +270,11 @@
     width: 100%;
   }
 
-<<<<<<< HEAD
   .video__container{
     height: 100px;
     width: 100px;
   }
 
-=======
-  .video_container{
-    height: 100px;
-    width: 100px;
-  }
->>>>>>> master
   #messages__container {
     display: none;
   }
@@ -348,11 +305,7 @@
   background-color: #1a1a1a60;
   padding: 1rem;
   left: 50%;
-<<<<<<< HEAD
   display: none;
-=======
-  display: flex;
->>>>>>> master
   gap: 1rem;
   transform: translateX(-50%);
 }
@@ -384,7 +337,6 @@
 .stream__actions button:hover {
   background-color: #845695;
 }
-<<<<<<< HEAD
 
 #join-btn{
   background-color: #845695;
@@ -400,5 +352,3 @@
   transform: translateX(-50%);
   cursor: pointer;
 }
-=======
->>>>>>> master
