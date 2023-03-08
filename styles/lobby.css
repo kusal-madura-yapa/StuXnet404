@@ -2,7 +2,8 @@
   width: 90%;
   max-width: 600px;
   border-radius: 10px;
-  background-color: #262625;
+  background-color: #727884;
+  
   position: fixed;
   top: 50%;
   left: 50%;
@@ -17,7 +18,7 @@
   border-radius: 10px 10px 0 0;
   padding: 10px;
   text-align: center;
-  background-color: #363739;
+  background-color: #000000;
   margin: 0;
   font-size: 18px;
   font-size: 300;
@@ -52,7 +53,7 @@
 .form__field__wrapper button[type='submit'] {
   margin-top: 32px;
   cursor: pointer;
-  background-color: #845695;
+  background-color: #e9b634;
   border: none;
   color: #fff;
   font-size: 16px;
@@ -82,9 +83,9 @@
   border-radius: 50%;
   cursor: pointer;
   transition: 0.3s;
-  border: 2px solid #797a79;
+  border: 2px solid #86ff86;
 }
 
 .avatar__option__selected {
-  border: 3px solid #845695;
+  border: 3px solid #e9b634;
 }
