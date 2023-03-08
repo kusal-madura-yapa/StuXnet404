@@ -203,7 +203,12 @@
   width: 300px;
 }
 
-
+@media (max-width: 1400px) {
+  .video_container{
+    height: 200px;
+    width: 200px;
+  }
+}
 @media (max-width: 1200px) {
   #members__container {
     display: none;
@@ -238,6 +243,10 @@
     width: 100%;
   }
 
+  .video_container{
+    height: 100px;
+    width: 100px;
+  }
   #messages__container {
     display: none;
   }
