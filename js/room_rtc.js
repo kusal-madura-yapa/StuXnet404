@@ -1,3 +1,5 @@
+
+// app ID for the signallig server
 const APP_ID = "39facf61f9764699be6fe4787dd77b26"
 
 let uid = sessionStorage.getItem('uid')
