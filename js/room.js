@@ -29,7 +29,7 @@ chatButton.addEventListener('click', () => {
   }
 
   activeChatContainer = !activeChatContainer;
-<<<<<<< HEAD
+
 });
 
 let displayFrame = document.getElementById('stream__box')
@@ -75,6 +75,4 @@ let hideDisplayFrame = () => {
 }
 
 displayFrame.addEventListener('click', hideDisplayFrame)
-=======
-});
->>>>>>> master
+
