@@ -24,7 +24,7 @@ let displayName = sessionStorage.getItem('display_name')
 if(!displayName){
     window.location = 'lobby.html'
 }
-
+// local vedio stream track
 let localTracks = []
 let remoteUsers = {}
 
@@ -244,7 +244,6 @@ let leaveStream = async (e) => {
 
     channel.sendMessage({text:JSON.stringify({'type':'user_left', 'uid':uid})})
 }
-
 
 
 document.getElementById('camera-btn').addEventListener('click', toggleCamera)
