@@ -151,6 +151,7 @@ let switchToCamera = async () => {
     await client.publish([localTracks[1]])
 }
 
+
 let handleUserPublished = async (user, mediaType) => {
     remoteUsers[user.uid] = user
 
@@ -158,6 +159,7 @@ let handleUserPublished = async (user, mediaType) => {
 
     let player = document.getElementById(`user-container-${user.uid}`)
     if(player === null){
+        // add the video to the dom
         player = `<div class="video__container" id="user-container-${user.uid}">
                 <div class="video-player" id="user-${user.uid}"></div>
             </div>`
@@ -225,21 +227,30 @@ let toggleCamera = async (e) => {
         button.classList.remove('active')
     }
 }
-
+// when the user on the screen the funtion must be run
 let toggleScreen = async (e) => {
     let screenButton = e.currentTarget
+    // get the camera button by accses the camara module 
     let cameraButton = document.getElementById('camera-btn')
 
+    // set the sharing screen to true
     if(!sharingScreen){
         sharingScreen = true
 
+        // get the class accses the mic and camara button
         screenButton.classList.add('active')
+        // hide the camara button 
         cameraButton.classList.remove('active')
+        // disable the camara button
         cameraButton.style.display = 'none'
 
+        // get the local screen track
         localScreenTracks = await AgoraRTC.createScreenVideoTrack()
 
+
+        // remove the video from the dom
         document.getElementById(`user-container-${uid}`).remove()
+        // show the display frame 
         displayFrame.style.display = 'block'
 
         let player = `<div class="video__container" id="user-container-${uid}">
