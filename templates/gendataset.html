@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "head.html" %}
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<section class="py-1">
+    <div class="alert alert-info">
+        <strong>Info!</strong> Move your face to many sides as you can while looking into the camera.
+      </div>
+    <div class="row mt-5">
+        <div class="col-md-3 offset-lg-2">
+            <h3>Generate Dataset {{ prs }}</h3>
+            <hr>
+            <img src="{{ url_for('vidfeed_dataset', nbr=prs) }}" width="100%" class="img-thumbnail">
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-md-3 offset-lg-2">
+            <a class="btn btn-warning btn-lg" href="{{ url_for('train_classifier', nbr=prs) }}"> Train </a>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>

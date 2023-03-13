@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "head.html" %}
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<section class="py-1">
+    <div class="row mt-5">
+        <div class="col-md-7 offset-lg-2">
+            <img src="{{ url_for('video_feed') }}" width="100%" class="img-thumbnail">
+        </div>
+    </div>
+
+
+</section>
+
+</body>
+</html>
