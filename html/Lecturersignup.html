@@ -19,6 +19,7 @@
         <input type="text" placeholder="Enter Email" name="email" id="email" required>
 
         <label><b>Password</b></label>
+        <!-- check the paswords  -->
         <input type="password" placeholder="Password" name="psw" id="psw" required>
 
         <hr>
@@ -100,10 +101,7 @@
                         // The write failed...
                         alert('user creation failed');
                       });
-                    
-
-                    
-
+                  
                     })     
       .catch((error) => {
         const errorCode = error.code;
