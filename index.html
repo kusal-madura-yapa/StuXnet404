@@ -7,31 +7,75 @@
     <title>TruAttend</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  
     
     <style>
       body{
         display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        width: 100vw;
-        margin: 0px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  margin: 0px;
+  font-family: sans-serif;
+  
+  background-size: cover;
+	background-position: center;
       }
+
+     
+ .indexstyle{
+  width:100%;
+	position:absolute;
+	top:50%;
+	transform:translatey(-50%);
+	text-align:center;
+	color:#000000;
+
+ }
+ .indexstyle h1{
+	font-size:60px;
+	margin-top:40px;
+}
+.indexstyle h2{
+	font-size:50px;
+	margin-top:40px;
+}
+.indexstyle p{
+	font-size:20px;
+	margin:30px auto;
+	font-weight:100;
+	line-height: 25px;
+}
+button{
+	width: 200px;
+	padding: 25px 0;
+	text-align:center;
+	margin:20px 10px;
+	border-radius: 25px;
+	font-weight:bold;
+	border:2px solid #e9b634;
+	background:transparent;
+	color:#000000;
+	cursor:pointer;
+	position:relative;
+	overflow:hidden;
+	
+	
+}
+
+ 
+  
     </style>
   </head>
   <body>
 
-    
-    
-
-    <div class="list-group, mb-5">
-      <h3>TruAttend</h3>
-    
-      <a href="register.html" class="list-group-item list-group-item-action list-group-item-primary">Student Login</a>
-      <a href="register.html" class="list-group-item list-group-item-action list-group-item-warning">Lecturer Login</a>
+    <div class="indexstyle">
+      <h1>Welcome to </h1><h2>'TruAttend'</h2>
       
-    </div>
+          <button onclick="location.href='studentsignup.html'"type="button"><span></span>Sign up as a Student</button>
+          <button onclick="location.href='Lecturersignup.html'"type="button"><span></span>Sign up as a Lecturer</button>
+        </div>
     
     
     
