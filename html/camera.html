@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+<title>Camera Test</title>
+<meta charset="utf-8"/>
+<link rel="stylesheet" href="../styles/camera.css">
+<script type="text/javascript"src="https://unpkg.com/webcam-easy@1.0.5/dist/webcam-easy.min.js"></script>
+
+
+
+</head>
+
+
+<body>
+<div class="banner" >
+
+		<div class="banner"> 
+			<div class="navigationbar">
+			<img src="" class="logo">
+			<ul>
+				<li><a href="../html/TruAttend.html">Home</a></li>
+				<li><a href="../index.html">Logout</a></li>
+				
+			</ul>
+			</div>
+	<p>Please give camera access to the webpage by clicking "Allow" in the above popup</p>
+	<video id="webCam"autoplay playsinlne width="1300" height="400"></video>
+	<canvas id="canvas" height="50"></canvas>
+	<p>If you are satisfied with your preview,then please click 'Start training' to continue</p>
+	<!-- kalana training Student side -->
+	<!-- <button onclick="location.href='Training.html'"type="button"><span></span>Start Training</button> -->
+	
+<script>
+const webCamElement = document.getElementById("webCam");
+const canvasElement = document.getElementById("canvas");
+const webcam = new Webcam(webCamElement, "user", canvasElement);
+webcam.start();
+</script>
+
+</body>
+</html>
