@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../styles/signup.css">
+</head>
+
+<body>
+
+<form>
+    <div class="container">
+        <h1>TruAttend Student Login</h1>
+        <img class="logo" src="../images/logo.png" alt="logo">
+        <p>Please fill in your account details.</p>
+        <hr>
+
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" id="email" required>
+
+        <label><b>Password</b></label>
+        <input type="password" placeholder="Password" name="psw" id="psw" required>
+
+        <hr>
+        <p>By creating an account you agree to our <a href="terms.html">Terms & Privacy</a>.</p>
+
+        <button type="button" id="submitData" name="submitData" class="registerbtn">Login</button>
+    </div>
+
+    <div class="container signin">
+        <p>Dont have an Account yet? <a href="studentsignup.html">Sign up</a>.</p>
+    </div>
+</form>
+
+</body>
+</html>
+
+
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import {initializeApp} from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+  import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      signOut
+  } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+  import {getDatabase, set, ref, update} from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
+  
+
+
+  const firebaseConfig = {
+
+    apiKey: "AIzaSyAuseJDRJw15PVY1fZu-oEscsKbGahiWYc",
+
+    authDomain: "truattend-auth.firebaseapp.com",
+
+    databaseURL: "https://truattend-auth-default-rtdb.firebaseio.com",
+
+    projectId: "truattend-auth",
+
+    storageBucket: "truattend-auth.appspot.com",
+
+    messagingSenderId: "865034658232",
+
+    appId: "1:865034658232:web:7fbea9844196dddac3af4d"
+
+  };
+
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth();
+      const database = getDatabase(app);
+
+      submitData.addEventListener('click',(e) =>{
+
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('psw').value;
+
+      
+
+      signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // ...
+                       var lgDate = new Date();
+                       update(ref(database, 'users/' + user.uid), {
+                          last_login: lgDate,
+                        
+                       
+                    })
+                    .then(() => {
+                        // Data saved successfully!
+                        alert('user logged in successfully');
+                        window.location.href = "TruAttend.html"; 
+      })
+                      })
+                      .catch((error) => {
+                        // The write failed...
+                        alert('Input Correct Login details');
+                      });
+                    
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert(errorMessage)
+  });
+      
+
+      
+</script>
