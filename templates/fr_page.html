@@ -15,13 +15,19 @@
     </div>
     <div class="row">
         <div class="col-md-3 offset-lg-2">
-            <a class="btn btn-danger" href="{{ url_for('stop_program')}}" > Stop </a>
+            <button class="btn btn-danger" onclick="goBack()" > Stop & Go Back </button>
             <!-- href="{{ url_for('train_classifier', nbr=prs) }} -->
         </div>
     </div>
 
 
 </section>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
 
 </body>
 </html>
