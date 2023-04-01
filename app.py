@@ -19,6 +19,13 @@ mydb = mysql.connector.connect(
 )
 mycursor = mydb.cursor()
 
+dataset_path="dataset"
+# Check if the dataset folder exists
+if not os.path.exists(dataset_path):
+    # Create the dataset folder if it doesn't exist
+    os.makedirs(dataset_path)
+    print("Created dataset folder")
+
 
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Generating the dataset >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 def generate_dataset(nbr):
