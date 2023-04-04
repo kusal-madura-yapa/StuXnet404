@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Attendance monitoring system.</title>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="../styles/lectuerbuttons.css">
+		
+	</head>
+	
+	<body>
+	
+		<div class="banner">
+			<div class="navigationbar">
+			<img src="" class="logo">
+			<ul>
+				<li><a href="lecturerhome.html">Home</a></li>
+				<li><a href="../index.html">Logout</a></li>
+				
+			</ul>
+			</div>
+		<div class="homepageinformation">
+            <p>Please select your option!!!</p>
+
+		<!-- view data base -->
+				<button onclick="viewDB()"type="button"><span></span>View Attendance</button>
+				<!-- download the data  -->
+                <button onclick="startFR()" type="button"><span></span>Track Attendance</button>
+				<!-- hadaranga mobile track -->
+				<button onclick="location.href=''"type="button"><span></span>Track Mobile Phone</button>
+				
+			</div>
+		</div>
+		<!-- <script src="../js/data.js"></script> -->
+		<script>
+			function startFR() {
+				window.open('http://127.0.0.1:5000/fr_page', '_blank');
+			}
+			function viewDB() {
+				window.open('http://localhost/phpmyadmin/index.php?route=/sql&pos=0&db=truattend_db&table=participants', '_blank');
+			}
+		</script>
+		
+
+
+		
+	</body>
+</html>
