@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "head.html" %}
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<section class="py-1">
+    <div class="alert alert-info">
+        <strong>INSTRUCTIONS-></strong> 
+        <ul class="list-group">
+            <li class="list-group-item">Make sure your face is well-lit and the camera is at eye level..</li>
+            <li class="list-group-item">Keep your face centered and in view of the camera.</li>
+            <li class="list-group-item">Try different angles and expressions to capture a variety of images.</li>
+            <li class="list-group-item">Move your face to many sides as you can while looking into the camera</li>
+            <li class="list-group-item">Avoid wearing hats or glasses that obscure your face.</li>
+            <li class="list-group-item">If you have trouble, try adjusting the lighting or camera position before giving up.</li>
+
+          </ul>
+
+      </div>
+    <div class="row mt-5">
+        <div class="col-md-3 offset-lg-2">
+            <h3>Generate Dataset {{ prs }}</h3>
+            <hr>
+            <img src="{{ url_for('vidfeed_dataset', nbr=prs) }}" width="100%" class="img-thumbnail">
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-md-3 offset-lg-2">
+            <a class="btn btn-warning btn-lg" href="{{ url_for('train_classifier', nbr=prs) }}"> Train </a>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>
