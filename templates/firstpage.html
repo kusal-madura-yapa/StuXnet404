@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "head.html" %}
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<div class="mx-auto" style="width: 200px;">
+    <div class="row">
+        <a class="btn btn-success" href="{{ url_for('start_program')}}" > Start </a>
+        <a class="btn btn-danger" href="{{ url_for('stop_program')}}" > Stop </a>
+    </div>
+
+  </div>
+
+<section class="py-1">
+    <div class="row mt-5">
+        <div class="col-md-7 offset-lg-2">
+            <img src="{{ url_for('video_feed') }}" width="100%" class="img-thumbnail">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 offset-lg-2">
+            <a class="btn btn-danger" href="{{ url_for('stop_program')}}" > Stop </a>
+            <!-- href="{{ url_for('train_classifier', nbr=prs) }} -->
+        </div>
+    </div>
+
+
+</section>
+
+</body>
+</html>
