@@ -110,32 +110,6 @@ def train_classifier(nbr):
 
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Face Recognition >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-
-def check_availability(recognized_names):
-    all_participants = []
-    absent_names = []
-
-    mycursor.execute("SELECT std_name FROM participants;")
-    results = mycursor.fetchall()
-    all_participants = [row[0] for row in results]
-    # print(all_participants)
-
-    # Iterate through each name in recognized_names list
-    for n1 in all_participants:
-        # Check if the name is not in all_participants list
-        if n1 not in recognized_names:
-            # If the name is absent,
-            mycursor.execute("UPDATE participants SET availability = %s WHERE std_name = %s", ("no", n1))
-            # print("marked as absent: " + n2)
-            mydb.commit()
-
-    for n2 in recognized_names:
-        # If the detected face ID is in the participants database, update their availability to "yes"
-        mycursor.execute("UPDATE participants SET availability = %s WHERE std_name = %s", ("yes", n2))
-        # print("marked as present: " + n2)
-        mydb.commit()
-
-
 def face_recognition():  # generate frame by frame from camera
     recognized_names = []
     mycursor.execute("UPDATE participants SET availability = %s", ("no",))
@@ -183,6 +157,29 @@ def face_recognition():  # generate frame by frame from camera
 
         return coords
 
+    def check_availability(recognized_names):
+        all_participants = []
+        absent_names = []
+
+        mycursor.execute("SELECT std_name FROM participants;")
+        results = mycursor.fetchall()
+        all_participants = [row[0] for row in results]
+        # print(all_participants)
+
+        # Iterate through each name in recognized_names list
+        for n1 in all_participants:
+            # Check if the name is not in all_participants list
+            if n1 not in recognized_names:
+                # If the name is absent,
+                mycursor.execute("UPDATE participants SET availability = %s WHERE std_name = %s", ("no", n1))
+                # print("marked as absent: " + n2)
+                mydb.commit()
+
+        for n2 in recognized_names:
+            # If the detected face ID is in the participants database, update their availability to "yes"
+            mycursor.execute("UPDATE participants SET availability = %s WHERE std_name = %s", ("yes", n2))
+            # print("marked as present: " + n2)
+            mydb.commit()
 
     def recognize(img, clf, faceCascade):
         """This function takes an image, a face recognition classifier, and a pre-trained Haar Cascade classifier.
